@@ -1,0 +1,66 @@
+{
+  "name": "@openclaw/wecom",
+  "version": "1.0.0",
+  "description": "OpenClaw 企业微信 (WeCom) 频道插件",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint src --ext .ts",
+    "format": "prettier --write \"src/**/*.ts\""
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "crypto-js": "^4.2.0",
+    "xml2js": "^0.6.2",
+    "zod": "^3.23.0",
+    "@sinclair/typebox": "0.34.48"
+  },
+  "devDependencies": {
+    "@types/crypto-js": "^4.2.0",
+    "@types/node": "^20.10.0",
+    "@types/xml2js": "^0.4.14",
+    "typescript": "^5.3.0",
+    "vitest": "^1.0.0",
+    "eslint": "^8.55.0",
+    "@typescript-eslint/eslint-plugin": "^6.15.0",
+    "@typescript-eslint/parser": "^6.15.0",
+    "prettier": "^3.1.0"
+  },
+  "openclaw": {
+    "extensions": [
+      "./dist/index.js"
+    ],
+    "channel": {
+      "id": "wecom",
+      "label": "WeCom",
+      "selectionLabel": "企业微信 (WeCom)",
+      "docsPath": "/channels/wecom",
+      "docsLabel": "wecom",
+      "blurb": "企业微信 (WeCom) 企业 messaging 对接，支持消息收发、群聊管理。",
+      "aliases": [
+        "wechat-work",
+        "wecom-work"
+      ],
+      "order": 40,
+      "quickstartAllowFrom": true
+    },
+    "install": {
+      "npmSpec": "@openclaw/wecom",
+      "localPath": "extensions/wecom",
+      "defaultChoice": "npm"
+    }
+  },
+  "keywords": [
+    "openclaw",
+    "wecom",
+    "wechat-work",
+    "enterprise-wechat",
+    "chatbot"
+  ],
+  "author": "",
+  "license": "MIT"
+}

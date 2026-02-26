@@ -1,0 +1,32 @@
+{
+  "id": "wecom",
+  "channels": ["wecom"],
+  "skills": ["./skills"],
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "corpId": {
+        "type": "string",
+        "description": "企业ID (CorpId)"
+      },
+      "agentId": {
+        "type": "string",
+        "description": "应用AgentId"
+      },
+      "secret": {
+        "type": "string",
+        "description": "应用Secret"
+      },
+      "token": {
+        "type": "string",
+        "description": "回调事件Token"
+      },
+      "encodingAESKey": {
+        "type": "string",
+        "description": "回调事件EncodingAESKey (43位)"
+      }
+    },
+    "required": ["corpId", "agentId", "secret", "token", "encodingAESKey"]
+  }
+}
