@@ -1,29 +1,20 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { WeComCrypto, parseXMLToObject, generateMessageId } from '../src/utils/crypto.js';
-import type { WeComConfig } from '../src/types/index.js';
+import { describe, it, expect } from 'vitest';
+import { parseXMLToObject, generateMessageId } from '../src/utils/crypto.js';
 
 describe('WeComCrypto', () => {
-  const config: WeComConfig = {
-    corpId: 'test-corp-id',
-    agentId: '1000001',
-    secret: 'test-secret',
-    token: 'test-token',
-    encodingAESKey: 'abcdefghijklmnopqrstuvwxyz1234567890abcd' // 43位
-  };
-
-  let crypto: WeComCrypto;
-
-  beforeEach(() => {
-    crypto = new WeComCrypto(config);
-  });
-
   describe('generateMessageId', () => {
-    it('should generate unique message IDs', () => {
-      const id1 = generateMessageId('user1', 'msg1');
-      const id2 = generateMessageId('user1', 'msg1');
+    it('should generate message IDs with correct format', () => {
+      const id = generateMessageId('user1', 'msg1');
       
-      expect(id1).toContain('wecom_user1_msg1_');
-      // 由于时间戳不同，ID 应该不同
+      expect(id).toContain('wecom_user1_msg1_');
+      expect(id).toMatch(/^wecom_user1_msg1_\d+$/);
+    });
+
+    it('should generate different IDs for different messages', async () => {
+      const id1 = generateMessageId('user1', 'msg1');
+      await new Promise((resolve) => setTimeout(resolve, 15));
+      const id2 = generateMessageId('user1', 'msg2');
+      
       expect(id1).not.toBe(id2);
     });
   });

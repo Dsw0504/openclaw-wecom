@@ -1,4 +1,5 @@
-import type { WeComCallbackMessage, OpenClawMessage, WeComMsgType, WeComEventType } from '../types/index.js';
+import type { WeComCallbackMessage, OpenClawMessage } from '../types/index.js';
+import { WeComMsgType, WeComEventType } from '../types/index.js';
 import { generateMessageId } from '../utils/crypto.js';
 
 /**
@@ -56,7 +57,7 @@ export class WeComMessageHandler {
   /**
    * 判断消息类型
    */
-  private getMessageType(msgType: string, content: string): 'text' | 'image' | 'file' | 'voice' {
+  private getMessageType(msgType: string, _content: string): 'text' | 'image' | 'file' | 'voice' {
     switch (msgType) {
       case WeComMsgType.IMAGE:
         return 'image';

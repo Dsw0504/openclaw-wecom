@@ -46,9 +46,6 @@ export class WeComCrypto {
     const time = Math.floor(Date.now() / 1000).toString();
     const nonce = this.generateRandomStr(16);
 
-    const encryptMsg = CryptoJS.enc.Utf8.parse(message);
-    const corpIdBytes = CryptoJS.enc.Utf8.parse(this.corpId);
-
     // 拼接: random(16) + msg_len(4) + msg + corpId
     const content = randomStr + this.int32ToBytes(message.length).toString() + message + this.corpId;
     const encrypted = this.AESEncrypt(content, this.encodingAESKey);

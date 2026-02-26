@@ -1,4 +1,5 @@
 import axios, { AxiosInstance } from 'axios';
+import { readFileSync } from 'fs';
 import type {
   WeComConfig,
   AccessTokenResponse,
@@ -149,7 +150,7 @@ export class WeComAPI {
   async uploadMedia(type: 'image' | 'voice' | 'video' | 'file', filePath: string): Promise<{ media_id: string }> {
     const token = await this.getAccessToken();
     const formData = new FormData();
-    formData.append('media', new Blob([require('fs').readFileSync(filePath)]), 'file');
+    formData.append('media', new Blob([readFileSync(filePath)]), 'file');
 
     const response = await this.client.post(
       `/cgi-bin/media/upload?access_token=${token}&type=${type}`,
